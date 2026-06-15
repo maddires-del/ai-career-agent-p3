@@ -1,1 +1,5 @@
-Added initial AI Career Agent application.
+import streamlit as st
+
+st.title("AI Career Agent P3")
+
+st.write("App is working!")

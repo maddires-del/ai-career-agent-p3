@@ -1,20 +1,30 @@
 import streamlit as st
 import google.generativeai as genai
 
+st.set_page_config(page_title="AI Career Agent P3")
+
 st.title("AI Career Agent P3")
 
-st.write("AI Career Agent with Custom MCP Tool")
+st.write("AI Career Agent with Custom MCP Tools")
 
-resume = st.text_area("Paste Resume Here")
+resume = st.text_area(
+    "Paste Resume Here",
+    height=200
+)
 
-job_description = st.text_area("Paste Job Description Here")
+job_description = st.text_area(
+    "Paste Job Description Here",
+    height=200
+)
 
 user_goal = st.text_input(
     "Career Goal",
     "Help me get this internship"
 )
 
-def skill_gap_tool(resume):
+# MCP TOOL 1
+def skill_gap_tool(resume, job_description):
+
     skills = [
         "Python",
         "SQL",
@@ -32,24 +42,90 @@ def skill_gap_tool(resume):
     missing = []
 
     for skill in skills:
-        if skill.lower() not in resume.lower():
-            missing.append(skill)
+
+        if skill.lower() in job_description.lower():
+
+            if skill.lower() not in resume.lower():
+                missing.append(skill)
 
     return missing
 
+
+# MCP TOOL 2
+def score_job_fit(resume, job_description):
+
+    skills = [
+        "Python",
+        "SQL",
+        "Machine Learning",
+        "Statistics",
+        "Excel",
+        "Pandas",
+        "Scikit-learn",
+        "GitHub",
+        "Generative AI"
+    ]
+
+    matches = 0
+
+    required = 0
+
+    for skill in skills:
+
+        if skill.lower() in job_description.lower():
+
+            required += 1
+
+            if skill.lower() in resume.lower():
+                matches += 1
+
+    if required == 0:
+        return 50
+
+    score = int((matches / required) * 100)
+
+    return score
+
+
 if st.button("Run Agent"):
 
-    missing_skills = skill_gap_tool(resume)
+    if not resume or not job_description:
 
-    st.subheader("Custom MCP Tool Output")
-    st.write("Missing Skills:")
-    st.write(missing_skills)
+        st.warning(
+            "Please enter both resume and job description."
+        )
 
-    genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
+    else:
 
-    model = genai.GenerativeModel("gemini-2.5-flash-lite")
+        missing_skills = skill_gap_tool(
+            resume,
+            job_description
+        )
 
-    prompt = f"""
+        fit_score = score_job_fit(
+            resume,
+            job_description
+        )
+
+        st.subheader("Custom MCP Tool Output")
+
+        st.write("Job Fit Score")
+
+        st.success(f"{fit_score}/100")
+
+        st.write("Missing Skills")
+
+        st.write(missing_skills)
+
+        genai.configure(
+            api_key=st.secrets["GEMINI_API_KEY"]
+        )
+
+        model = genai.GenerativeModel(
+            "gemini-2.5-flash-lite"
+        )
+
+        prompt = f"""
 You are an AI Career Agent.
 
 User Goal:
@@ -61,25 +137,35 @@ Resume:
 Job Description:
 {job_description}
 
-Tool Output:
-Missing Skills: {missing_skills}
+MCP Tool Results:
+
+Job Fit Score:
+{fit_score}
+
+Missing Skills:
+{missing_skills}
 
 Your task:
 
-1. Decide what the user needs most.
-2. Explain your decision.
-3. Give recommendations.
-4. Suggest next steps.
+1. Decide the most important next action.
+2. Explain your reasoning.
+3. Recommend resume improvements.
+4. Suggest skills to learn.
+5. Give interview preparation tips.
+6. Provide next steps.
 
-Format:
+Return:
 
 Decision:
 Reason:
-Recommendations:
+Resume Improvements:
+Skills To Learn:
+Interview Prep:
 Next Steps:
 """
 
-    response = model.generate_content(prompt)
+        response = model.generate_content(prompt)
 
-    st.subheader("Agent Recommendation")
-    st.write(response.text)
+        st.subheader("Agent Recommendation")
+
+        st.write(response.text)

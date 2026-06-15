@@ -1,5 +1,4 @@
-import streamlit as st
-
-st.title("AI Career Agent P3")
-
-st.write("App is working!")
+Resume box
+Job Description box
+User Goal box
+Run Agent button

@@ -2,49 +2,29 @@
 
 ## Purpose
 
-AI Career Agent helps students prepare for Data Science and Generative AI internships.
+AI Career Agent helps students prepare for Data Science, Machine Learning, and Generative AI internships.
 
-## Custom MCP Tool
+## Custom MCP Tools
 
-Skill Gap Analyzer Tool
+### Skill Gap Analyzer
 
-This tool scans a resume and identifies missing internship skills.
+This tool compares a student's resume against job requirements and identifies missing skills.
+
+### Job Fit Scorer
+
+This tool calculates a job fit score based on the overlap between the resume and job description.
 
 ## Agent Workflow
-
-1. User provides resume
-2. User provides job description
-3. MCP Skill Gap Tool runs
-4. Gemini analyzes results
-5. Agent decides the best recommendation
-
-## Model
-
-Gemini 2.5 Flash Lite
-
-## Deployment
-
-Streamlit Cloud
-
-## Custom MCP Tool
-
-Skill Gap Analyzer Tool
-
-This tool analyzes a student's resume and identifies missing Data Science and AI internship skills.
-
-The tool runs before the model generates recommendations and serves as the project's custom MCP component.
-
-## Architecture
 
 User Resume + Job Description
 
 ↓
 
-Custom MCP Tool: Skill Gap Analyzer
+Skill Gap Analyzer Tool
 
 ↓
 
-Missing Skills Output
+Job Fit Scorer Tool
 
 ↓
 
@@ -54,4 +34,26 @@ Gemini Agent
 
 Decision, Recommendations, and Next Steps
 
-The MCP tool identifies missing Data Science and AI internship skills before the language model generates recommendations. This allows the model to make more informed decisions based on structured tool output.
+## Model
+
+Gemini 2.5 Flash Lite
+
+## Deployment
+
+Streamlit Cloud
+
+## Autonomous Decision Making
+
+The Gemini agent uses outputs from the MCP tools to determine the most appropriate recommendation for the user. Based on the job fit score and missing skills, the model decides whether the user should focus on interview preparation, resume improvements, or skill development.
+
+## Evaluation
+
+The system was evaluated using five test cases:
+
+1. Strong Match
+2. Weak Resume
+3. Generative AI Internship
+4. Incomplete Resume
+5. Failure Case
+
+Results showed that the MCP tools correctly identified missing skills and generated realistic recommendations without inventing experience.

@@ -33,3 +33,25 @@ Skill Gap Analyzer Tool
 This tool analyzes a student's resume and identifies missing Data Science and AI internship skills.
 
 The tool runs before the model generates recommendations and serves as the project's custom MCP component.
+
+## Architecture
+
+User Resume + Job Description
+
+↓
+
+Custom MCP Tool: Skill Gap Analyzer
+
+↓
+
+Missing Skills Output
+
+↓
+
+Gemini Agent
+
+↓
+
+Decision, Recommendations, and Next Steps
+
+The MCP tool identifies missing Data Science and AI internship skills before the language model generates recommendations. This allows the model to make more informed decisions based on structured tool output.

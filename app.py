@@ -1,1 +1,1 @@
-Added initial AI Career Agent application
+Added initial AI Career Agent application.

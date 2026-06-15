@@ -44,3 +44,29 @@ Insufficient information
 
 Actual:
 To be tested
+
+## Test Case 1
+
+Resume:
+Python, SQL, GitHub
+
+Job Description:
+Data Science Intern requiring Python, SQL, Machine Learning, Pandas and communication skills.
+
+Expected:
+Identify missing technical skills and recommend improvement areas.
+
+Actual:
+Missing Skills:
+
+* Machine Learning
+* Pandas
+* Statistics
+* Scikit-learn
+* Excel
+
+Agent Decision:
+Prioritize Machine Learning and Pandas.
+
+Observation:
+The MCP tool correctly identified missing skills and the model generated practical recommendations and next steps.

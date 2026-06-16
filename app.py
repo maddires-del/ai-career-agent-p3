@@ -67,7 +67,6 @@ def score_job_fit(resume, job_description):
     ]
 
     matches = 0
-
     required = 0
 
     for skill in skills:
@@ -115,7 +114,11 @@ if st.button("Run Agent"):
 
         st.write("Missing Skills")
 
-        st.write(missing_skills)
+        if len(missing_skills) == 0:
+            st.success("No missing skills found")
+        else:
+            for skill in missing_skills:
+                st.write(f"- {skill}")
 
         genai.configure(
             api_key=st.secrets["GEMINI_API_KEY"]

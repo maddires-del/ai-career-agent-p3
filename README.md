@@ -64,3 +64,55 @@ The application uses an external skills dataset
 (skills.csv) containing Data Science and Generative AI internship skills.
 
 This dataset is loaded at runtime and used by the MCP tools.
+
+## Architecture
+
+User Input
+
+↓
+
+Resume + Job Description
+
+↓
+
+Skill Gap Analyzer MCP Tool
+
+↓
+
+Job Fit Scorer MCP Tool
+
+↓
+
+Gemini Agent
+
+↓
+
+Recommendations and Next Steps
+
+## Build Process
+
+Version 1:
+Created initial Streamlit application.
+
+Version 2:
+Added Skill Gap Analyzer MCP tool.
+
+Version 3:
+Added Job Fit Scorer MCP tool.
+
+Version 4:
+Integrated Gemini 2.5 Flash Lite.
+
+Version 5:
+Added evaluation testing and failure cases.
+
+Version 6:
+Added external grounding through skills.csv.
+
+## Limitations
+
+The current version executes MCP tools before passing results to Gemini.
+
+Future improvements would allow the language model to autonomously select and invoke tools through a full function-calling loop.
+
+The current grounding dataset is focused on Data Science, Machine Learning, and Generative AI internship skills.

@@ -90,6 +90,18 @@ Result:
 The system demonstrates autonomous decision-making instead of returning fixed outputs.
 
 ---
+## Version 7
+
+Added External Grounding Dataset.
+
+Problem:
+The internship skills used by the MCP tools were hardcoded directly in the application.
+
+Change:
+Created an external dataset (skills.csv) containing Data Science, Machine Learning, and Generative AI internship skills.
+
+Result:
+The MCP tools now use a separate grounding source that can be updated independently from the application code.
 
 ## Evaluation Summary
 

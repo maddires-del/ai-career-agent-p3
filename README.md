@@ -109,11 +109,10 @@ Added evaluation testing and failure cases.
 Version 6:
 Added external grounding through skills.csv.
 
-## Limitations
+Current Limitations
 
 The current version executes MCP tools before passing results to Gemini.
 
-Future improvements would allow the language model to autonomously select and invoke tools through a full function-calling loop.
+Future work would implement a full tool-calling loop where Gemini autonomously decides when to invoke tools and how to use the returned results.
 
-The current grounding dataset is focused on Data Science, Machine Learning, and Generative AI internship skills.
-
+This would more closely align with a production MCP architecture.

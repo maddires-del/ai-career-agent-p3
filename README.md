@@ -116,3 +116,16 @@ The current version executes MCP tools before passing results to Gemini.
 Future work would implement a full tool-calling loop where Gemini autonomously decides when to invoke tools and how to use the returned results.
 
 This would more closely align with a production MCP architecture.
+Prompt Version 1
+
+The original prompt focused only on generating internship recommendations.
+
+Issue:
+Responses were generic and did not consistently reference missing skills.
+
+Prompt Version 2
+
+The prompt was revised to include MCP tool outputs, job fit scores, and structured instructions for recommendations.
+
+Result:
+Responses became more targeted and aligned with internship requirements.

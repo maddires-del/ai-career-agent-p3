@@ -58,3 +58,9 @@ The system was evaluated using five test cases:
 
 Results showed that the MCP tools correctly identified missing skills and generated realistic recommendations without inventing experience.
 
+## Grounding
+
+The application uses an external skills dataset
+(skills.csv) containing Data Science and Generative AI internship skills.
+
+This dataset is loaded at runtime and used by the MCP tools.
